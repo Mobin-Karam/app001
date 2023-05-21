@@ -1,25 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Edit from "../img/edit.png";
 import Delete from "../img/delete.png";
-import Menu from "../components/Menu"
+import Menu from "../components/Menu";
+import axios from "axios";
+import moment from "moment";
 
 const Single = () => {
+  const [post, setPost] = useState({});
+
+  const location = useLocation();
+
+  const postId = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/post/${postId}`);
+        setPost(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [postId]);
+
   return (
     <div className="single">
       <div className="content">
-        <img
-          src="https://img.freepik.com/free-photo/technology-human-touch-background-modern-remake-creation-adam_53876-129794.jpg?w=1060&t=st=1684600592~exp=1684601192~hmac=31db086c77472a0d3d12dfed5402bf5862663ff679ae4a1c5f89f63eefb9d821"
-          alt=""
-        />
+        <img src={post?.img} alt="" />
         <div className="user">
           <img
             src="https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg?w=1060&t=st=1684640109~exp=1684640709~hmac=97b7e85d4b3b9104687de4852619bf1ad056f74449e73bb1051ed20d5b72abc3"
             alt=""
           />
           <div className="info">
-            <span>John</span>
-            <p>Posted 2 days ago</p>
+            <span>{post.username}</span>
+            <p>Posted {moment(post.date).fromNow()}</p>
           </div>
           <div className="edit">
             <Link to={`/write?edit=1`}>
