@@ -4,10 +4,12 @@ import Logo from "../img/logo.png";
 const Footer = () => {
   return (
     <footer>
-      <img src={Logo} alt="" />
-      <span>
-        Made with ❤ by <b>Mobinkaram.</b>
-      </span>
+      <section className="inside">
+        <img src={Logo} alt="" />
+        <span>
+          Made with ❤ by <b>Mobinkaram.</b>
+        </span>
+      </section>
     </footer>
   );
 };

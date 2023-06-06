@@ -10,7 +10,7 @@ $lightGreen: #b9e7e7;
   justify-content: center;
   .container {
     width: 100%;
-    padding: 10px 200px;
+    // padding: 10px 50px;
     // background-color: $lightGreen;
 
     .link {
@@ -75,6 +75,7 @@ $lightGreen: #b9e7e7;
     //NAVBAR
 
     .navbar {
+      padding: 5px 30px;
       .container {
         padding: 10px 0px;
         display: flex;
@@ -92,8 +93,13 @@ $lightGreen: #b9e7e7;
           gap: 10px;
 
           h6 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 300;
+            padding: 10px 15px;
+
+            &:hover {
+              background-color: #d9d9d9;
+            }
           }
 
           span {
@@ -129,84 +135,44 @@ $lightGreen: #b9e7e7;
 
     //FOOTER
     footer {
-      margin-top: 100px;
-      padding: 20px;
-      background-color: $lightGreen;
-      display: flex;
-      justify-content: space-between;
-      img {
-        width: 80px;
-        height: 80px;
+      width: 100%;
+      .inside {
+        margin-top: 100px;
+        padding: 20px;
+        background-color: $lightGreen;
+        display: flex;
+        justify-content: space-between;
+        img {
+          width: 80px;
+          height: 80px;
+        }
       }
     }
 
     //HOME
     .home {
+      padding: 0px 100px;
       .posts {
-        margin-top: 50px;
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 150px;
-
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: column nowrap;
         .post {
+          width: 100%;
           display: flex;
-          gap: 100px;
-
-          &:nth-child(2n + 1) {
-            flex-direction: row-reverse;
-          }
+          align-items: center;
+          justify-content: space-between;
+          flex-flow: row nowrap;
+          border-bottom: 2px solid gray;
+          margin-bottom: 20px;
           .img {
-            flex: 2;
-            position: relative;
-
-            &:after {
-              content: "";
-              width: 100%;
-              height: 100%;
-              background-color: $lightGreen;
-              position: absolute;
-              top: 20px;
-              left: -20px;
-              z-index: -1;
-            }
-
+            width: 100%;
+            min-height: 100%;
             img {
-              width: 100%;
-              min-height: 400px;
+              width: 300px;
+              min-height: 200px;
               object-fit: cover;
-            }
-          }
-
-          .content {
-            flex: 3;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            .link {
-              h1 {
-                color: #000;
-                font-size: 48px;
-              }
-
-              p {
-                font-size: 18px;
-              }
-            }
-            button {
-              width: max-content;
-              padding: 10px 20px;
-              border: none;
-              cursor: pointer;
-              background-color: hwhite;
-              border: 1px solid teal;
-              color: teal;
-
-              &:hover {
-                border: 1px solid white;
-                background-color: $lightGreen;
-                color: black;
-              }
             }
           }
         }

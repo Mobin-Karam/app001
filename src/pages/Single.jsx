@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Edit from "../img/edit.png";
 import Delete from "../img/delete.png";
 import Menu from "../components/Menu";
@@ -11,6 +11,7 @@ const Single = () => {
   const [post, setPost] = useState({});
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const postId = location.pathname.split("/")[2];
 
@@ -19,17 +20,24 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/post/${postId}`);
+        const res = await axios.get(`/posts/${postId}`);
         setPost(res.data);
-        console.log(res);
+        // console.log(res)
       } catch (err) {
-        console.log(`Fuck You Error!`);
         console.log(err);
       }
     };
     fetchData();
   }, [postId]);
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/posts/${postId}`);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="single">
       <div className="content">
@@ -42,10 +50,10 @@ const Single = () => {
           </div>
           {currentUser.username === post.username && (
             <div className="edit">
-              <Link to={`/write?edit=1`}>
+              <Link to={`/write?edit=1`} state={post} >
                 <img src={Edit} alt="" />
               </Link>
-              <Link>
+              <Link onClick={handleDelete}>
                 <img src={Delete} alt="" />
               </Link>
             </div>
@@ -54,7 +62,7 @@ const Single = () => {
         <h1>{post.title}</h1>
         {post.desc}
       </div>
-      <Menu />
+      <Menu cat={post.cat} />
     </div>
   );
 };
