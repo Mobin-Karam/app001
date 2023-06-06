@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "cookie-parser": "^1.4.6",
+    "http-proxy-middleware": "^2.0.6",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -41,6 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3000/api/" 
+  }
 }
